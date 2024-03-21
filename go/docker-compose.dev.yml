@@ -1,0 +1,21 @@
+version: "3.8"
+name: go-docker
+services:
+  docker-api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    container_name: "go-docker-api"
+    image: api
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - 4000:4000
+    networks:
+      - go-docker
+
+networks:
+  go-docker:
+    name: rota_network
+    driver: bridge
